@@ -26,10 +26,16 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.btn_sendMoney) Button _sendMoneyButton;
     @BindView(R.id.btn_Events) Button _eventsButton;
 
+
+    //===================================================
+    //ONCREATE
+    //===================================================
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         ButterKnife.bind(this);
 
         _emailText.setText("stormborn@motherofdragons.com");
@@ -54,6 +60,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    //===================================================
+    //BUTTON MANAGEMENT
+    //===================================================
 
     public void sendMoney() {
         Log.d(TAG, "SendMoney");
@@ -131,7 +141,13 @@ public class LoginActivity extends AppCompatActivity {
         moveTaskToBack(true);
     }
 
+    //===================================================
+    //STATE MANAGEMENT
+    //===================================================
+
     public void onSendSuccess() {
+        Intent intent = new Intent(getApplicationContext(), ContactsActivity.class);
+        startActivity(intent);
         _sendMoneyButton.setEnabled(true);
         finish();
     }

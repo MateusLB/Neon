@@ -3,6 +3,7 @@ package com.neon.arthurabreu.neon.Activities;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ListView;
 
 import com.neon.arthurabreu.neon.Adapters.ListAdapter;
@@ -12,6 +13,7 @@ import com.neon.arthurabreu.neon.R;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by desenv on 16/08/17.
@@ -23,24 +25,28 @@ public class ContactsActivity extends AppCompatActivity{
     ListAdapter listAdapter;
     @BindView(R.id.list_view) ListView _listView;
 
+    //===================================================
+    //ONCREATE
+    //===================================================
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_view);
 
-        listAdapter = new ListAdapter(
-                getApplicationContext(),
-                R.layout.list_custom_contacts,
-                fillArray()) {
-        };
-        _listView.setAdapter(listAdapter);
-        listAdapter.notifyDataSetChanged();
-    }
+        ButterKnife.bind(this);
 
-    public ArrayList<Contacts> fillArray()
-    {
         contactsArrayList = new ArrayList<>();
 
+        loadData();
+    }
+
+    //===================================================
+    //FILL ARRAY
+    //===================================================
+
+    public void loadData()
+    {
         contactsArrayList.add(new Contacts(1, 1, "202-555-0121", "Ned Stark"));
         contactsArrayList.add(new Contacts(2, 2, "202-555-0193", "Robert Baratheon"));
         contactsArrayList.add(new Contacts(3, 3, "202-555-0158", "Jaime Lannister"));
@@ -57,6 +63,14 @@ public class ContactsActivity extends AppCompatActivity{
         contactsArrayList.add(new Contacts(14, 14, "938-891-9998", "Tyrion Lannister"));
         contactsArrayList.add(new Contacts(15, 15, "128-604-5116", "Margaery Tyrell "));
 
-        return contactsArrayList;
+        listAdapter = new ListAdapter(
+                getApplicationContext(),
+                R.layout.list_custom_contacts,
+                contactsArrayList) {
+        };
+        _listView.setAdapter(listAdapter);
+        listAdapter.notifyDataSetChanged();
+
+        Log.d("======================>", contactsArrayList.toString());
     }
 }
