@@ -145,8 +145,11 @@ public class LoginActivity extends AppCompatActivity {
     //===================================================
 
     public void onSendSuccess() {
+
+        //Jump to the next activity
         Intent intent = new Intent(getApplicationContext(), ContactsActivity.class);
         startActivity(intent);
+
         _sendMoneyButton.setEnabled(true);
         finish();
     }
