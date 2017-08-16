@@ -24,14 +24,14 @@
             app:border_color="@color/white"
             app:border_width="3dp" />
 
-        <!-- Email Label -->
+        <!-- Name Label -->
         <EditText
             android:id="@+id/input_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:layout_marginTop="24dp"
-            android:inputType="textEmailAddress" />
+            android:inputType="none" />
 
         <!-- Email Label -->
         <EditText
@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:inputType="textEmailAddress" />
+            android:inputType="none" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_sendMoney"

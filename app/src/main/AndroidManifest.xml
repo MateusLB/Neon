@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeDark">
 
-        <activity android:name=".LoginActivity" android:theme="@style/AppThemeDark">
+        <activity android:name=".Activities.LoginActivity" android:theme="@style/AppThemeDark">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

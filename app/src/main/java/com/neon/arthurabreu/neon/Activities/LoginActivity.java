@@ -1,4 +1,4 @@
-package com.neon.arthurabreu.neon;
+package com.neon.arthurabreu.neon.Activities;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.neon.arthurabreu.neon.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +34,9 @@ public class LoginActivity extends AppCompatActivity {
 
         _emailText.setText("stormborn@motherofdragons.com");
         _nameText.setText("Daenerys");
+
+        _emailText.setKeyListener(null);
+        _nameText.setKeyListener(null);
 
         _sendMoneyButton.setOnClickListener(new View.OnClickListener() {
 
