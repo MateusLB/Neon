@@ -3,17 +3,19 @@ package com.neon.arthurabreu.neon.Adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import com.neon.arthurabreu.neon.Model.Contacts;
-import com.neon.arthurabreu.neon.R;
-import java.util.ArrayList;
-import android.support.v7.widget.RecyclerView;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.neon.arthurabreu.neon.Model.Contacts;
+import com.neon.arthurabreu.neon.R;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,8 +53,8 @@ public class ListAdapter extends ArrayAdapter<Contacts> {
 
         if (convertView == null) {
             view = LayoutInflater.from(context).inflate(R.layout.list_custom_contacts, parent, false);
-            viewHolder = new ListAdapter.ViewHolder(convertView);
-            convertView.setTag(viewHolder);
+            viewHolder = new ListAdapter.ViewHolder(view);
+            view.setTag(viewHolder);
         } else {
             view = convertView;
             viewHolder = (ListAdapter.ViewHolder) view.getTag();
@@ -65,8 +67,9 @@ public class ListAdapter extends ArrayAdapter<Contacts> {
         viewHolder._contactName.setText(contacts.getName());
         viewHolder._contactPhone.setText(contacts.getPhone());
 
-//        viewHolder.chatsName.setText(chats.getTitle());
-//        id = chats.getId();
+        Glide.with(context)
+                .load(contacts.getResId())
+                .into(viewHolder._profile);
 
         return view;
     }
@@ -75,7 +78,7 @@ public class ListAdapter extends ArrayAdapter<Contacts> {
     //VIEWHOLDER CLASS
     //===================================================
 
-    public class ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder{
 
         @BindView(R.id.profile)
         ImageView _profile;
@@ -87,6 +90,7 @@ public class ListAdapter extends ArrayAdapter<Contacts> {
         EditText _contactPhone;
 
         public ViewHolder(View view){
+            super(view);
             ButterKnife.bind(this, view);
         }
     }

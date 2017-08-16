@@ -45,10 +45,10 @@
             android:id="@+id/btn_sendMoney"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="110dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/round_button"
             android:padding="12dp"
-            android:text="Send Money"
-            android:background="@drawable/round_button"/>
+            android:text="Send Money" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_Events"
@@ -56,9 +56,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:layout_marginTop="24dp"
+            android:background="@drawable/round_button"
             android:padding="12dp"
-            android:text="Event History"
-            android:background="@drawable/round_button"/>
+            android:text="Event History" />
 
     </LinearLayout>
 </ScrollView>
