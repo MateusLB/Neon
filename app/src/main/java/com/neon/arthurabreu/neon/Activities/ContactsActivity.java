@@ -1,11 +1,13 @@
 package com.neon.arthurabreu.neon.Activities;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
 import com.neon.arthurabreu.neon.Adapters.ListAdapter;
+import com.neon.arthurabreu.neon.Adapters.DialogInterface;
 import com.neon.arthurabreu.neon.Model.Contacts;
 import com.neon.arthurabreu.neon.R;
 
@@ -67,7 +69,14 @@ public class ContactsActivity extends AppCompatActivity{
         listAdapter = new ListAdapter(
                 getApplicationContext(),
                 R.layout.list_custom_contacts,
-                contactsArrayList) {
+                contactsArrayList, new DialogInterface() {
+            @Override
+            public void dialogInterface() {
+                Dialog dialog = new Dialog(ContactsActivity.this, R.style.ThemeDialogCustom);
+                dialog.setContentView(R.layout.custom_dialog);
+                dialog.show();
+            }
+        }) {
         };
         _listView.setAdapter(listAdapter);
         listAdapter.notifyDataSetChanged();

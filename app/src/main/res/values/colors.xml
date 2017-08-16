@@ -21,4 +21,5 @@
     <color name="cian">#3fe4e4</color>
     <color name="darkpink">#c21b1b</color>
     <color name="lightcian">#69eaea</color>
+    <color name="transparent_color">#00000000</color>
 </resources>

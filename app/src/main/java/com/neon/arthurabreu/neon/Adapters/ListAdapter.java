@@ -3,13 +3,14 @@ package com.neon.arthurabreu.neon.Adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.neon.arthurabreu.neon.Model.Contacts;
@@ -28,10 +29,13 @@ import butterknife.ButterKnife;
 public class ListAdapter extends ArrayAdapter<Contacts> {
 
     Context context;
+    private DialogInterface mListener;
 
-    public ListAdapter(Context context, int resource, ArrayList<Contacts> contactsArrayList) {
+
+    public ListAdapter(Context context, int resource, ArrayList<Contacts> contactsArrayList, DialogInterface dialoginterface) {
         super(context, R.layout.list_custom_contacts, contactsArrayList);
         this.context = context;
+        this.mListener = dialoginterface;
     }
 
     @Override
@@ -71,6 +75,15 @@ public class ListAdapter extends ArrayAdapter<Contacts> {
                 .load(contacts.getResId())
                 .into(viewHolder._profile);
 
+        viewHolder._cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(mListener != null)
+                    mListener.dialogInterface();
+            }
+        });
+
         return view;
     }
 
@@ -80,14 +93,17 @@ public class ListAdapter extends ArrayAdapter<Contacts> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
+        @BindView(R.id.cardView)
+        CardView _cardView;
+
         @BindView(R.id.profile)
         ImageView _profile;
 
         @BindView(R.id.contact_name)
-        EditText _contactName;
+        TextView _contactName;
 
         @BindView(R.id.contact_phone)
-        EditText _contactPhone;
+        TextView _contactPhone;
 
         public ViewHolder(View view){
             super(view);
