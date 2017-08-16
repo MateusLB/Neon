@@ -3,10 +3,15 @@ package com.neon.arthurabreu.neon.Activities;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ListView;
 
+import com.neon.arthurabreu.neon.Adapters.ListAdapter;
 import com.neon.arthurabreu.neon.Model.Contacts;
+import com.neon.arthurabreu.neon.R;
 
 import java.util.ArrayList;
+
+import butterknife.BindView;
 
 /**
  * Created by desenv on 16/08/17.
@@ -15,12 +20,21 @@ import java.util.ArrayList;
 public class ContactsActivity extends AppCompatActivity{
 
     ArrayList<Contacts> contactsArrayList;
+    ListAdapter listAdapter;
+    @BindView(R.id.list_view) ListView _listView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.list_view);
 
-        fillArray();
+        listAdapter = new ListAdapter(
+                getApplicationContext(),
+                R.layout.list_custom_contacts,
+                fillArray()) {
+        };
+        _listView.setAdapter(listAdapter);
+        listAdapter.notifyDataSetChanged();
     }
 
     public ArrayList<Contacts> fillArray()
@@ -42,5 +56,7 @@ public class ContactsActivity extends AppCompatActivity{
         contactsArrayList.add(new Contacts(13, 13, "818-723-0802", "Bronn"));
         contactsArrayList.add(new Contacts(14, 14, "938-891-9998", "Tyrion Lannister"));
         contactsArrayList.add(new Contacts(15, 15, "128-604-5116", "Margaery Tyrell "));
+
+        return contactsArrayList;
     }
 }
