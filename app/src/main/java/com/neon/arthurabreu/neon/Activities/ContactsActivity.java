@@ -2,13 +2,15 @@ package com.neon.arthurabreu.neon.Activities;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
-import com.neon.arthurabreu.neon.Adapters.ListAdapter;
 import com.neon.arthurabreu.neon.Adapters.DialogInterface;
+import com.neon.arthurabreu.neon.Adapters.ListAdapter;
 import com.neon.arthurabreu.neon.Model.Contacts;
+import com.neon.arthurabreu.neon.Presenter.SendMoney;
 import com.neon.arthurabreu.neon.R;
 
 import java.util.ArrayList;
@@ -25,14 +27,16 @@ public class ContactsActivity extends AppCompatActivity{
     ArrayList<Contacts> contactsArrayList;
     ArrayList<Integer> integerArrayList;
     ListAdapter listAdapter;
-    @BindView(R.id.list_view) ListView _listView;
+
+    @BindView(R.id.list_view)
+    ListView _listView;
 
     //===================================================
     //ONCREATE
     //===================================================
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_view);
 
@@ -70,14 +74,34 @@ public class ContactsActivity extends AppCompatActivity{
                 getApplicationContext(),
                 R.layout.list_custom_contacts,
                 contactsArrayList, new DialogInterface() {
+
+            //===================================================
+            //SHOW DIALOG
+            //===================================================
+
             @Override
             public void dialogInterface() {
                 Dialog dialog = new Dialog(ContactsActivity.this, R.style.ThemeDialogCustom);
                 dialog.setContentView(R.layout.custom_dialog);
                 dialog.show();
+
+                //===================================================
+                //BUTTON CLICK LISTENER FOR THE DIALOG
+                //===================================================
+
+                Button btn = (Button) dialog.findViewById(R.id.btn_sendMoney);
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        SendMoney sendMoneyObj = new SendMoney();
+                        sendMoneyObj.retrieveToken();
+                    }
+                });
+
             }
         }) {
         };
+
         _listView.setAdapter(listAdapter);
         listAdapter.notifyDataSetChanged();
     }

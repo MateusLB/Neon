@@ -9,11 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.neon.arthurabreu.neon.Model.Contacts;
+import com.neon.arthurabreu.neon.Presenter.SendMoney;
 import com.neon.arthurabreu.neon.R;
 
 import java.util.ArrayList;
@@ -51,8 +53,8 @@ public class ListAdapter extends ArrayAdapter<Contacts> {
         //VIEWHOLDER MANAGEMENT
         //===================================================
 
-        ListAdapter.ViewHolder viewHolder;
-        View view;
+        final ListAdapter.ViewHolder viewHolder;
+        final View view;
         Contacts contacts = getItem(position);
 
         if (convertView == null) {
@@ -80,7 +82,9 @@ public class ListAdapter extends ArrayAdapter<Contacts> {
             public void onClick(View view) {
 
                 if(mListener != null)
+                {
                     mListener.dialogInterface();
+                }
             }
         });
 
