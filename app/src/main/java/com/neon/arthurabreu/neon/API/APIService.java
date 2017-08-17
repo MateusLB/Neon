@@ -24,7 +24,7 @@ public interface APIService {
     //Failed!com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was BOOLEAN at line 1 column 5 path $
     @FormUrlEncoded
     @POST("SendMoney")
-    Call<Task> sendMoney(@Field(value = "ClienteId", encoded = true) String clientId,
+    Call<Void> sendMoney(@Field(value = "ClienteId", encoded = true) String clientId,
                          @Field(value = "Valor", encoded = true) Double value,
                          @Field(value = "Token", encoded = true) String token);
 

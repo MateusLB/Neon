@@ -119,24 +119,24 @@ public class SendMoneyActivity extends AppCompatActivity {
         final APIService apiService =
                 APIClient.getClient().create(APIService.class);
 
-        Call<Task> call = apiService.sendMoney(task.getClientId(), task.getValue(), task.getToken());
+        Call<Void> call = apiService.sendMoney(task.getClientId(), task.getValue(), task.getToken());
 //        Call<Task> call = apiService.sendMoney(task);
 
 
-        call.enqueue(new Callback<Task>() {
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Task> call, Response<Task> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
 
 //                Log.d(TAG, "TASK id " + task.getClientId().toString());
 //                Log.d(TAG, "TASK token " + task.getToken().toString());
 //                Log.d(TAG, "TASK value " + task.getValue().toString());
-//                Log.d(TAG, "CreateTask Api Response.isSuccessful: " + response.isSuccessful());
+                Log.d(TAG, "CreateTask Api Response.isSuccessful: " + response.isSuccessful());
 //
 //                Log.d(TAG, "URL " + call.request().url().toString());
             }
 
             @Override
-            public void onFailure(Call<Task> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
                 System.out.println("Failed!" + t.toString());
 //                Log.d(TAG, "URL " + call.request().url().toString());
             }
