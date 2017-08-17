@@ -12,29 +12,29 @@ public class Task {
 //    String clientId;
 //
 //    @SerializedName("Valor")
-//    double value;
+//    Double value;
 //
-//    @SerializedName("token")
+//    @SerializedName("Token")
 //    String token;
 
-    String clientId, token;
-    Double value;
+    final String clientId, token;
+    final Double value;
 
-    public Task(String clientId, String token, Double value) {
+    public Task(String clientId, Double value, String token) {
         this.clientId = clientId;
         this.token = token;
         this.value = value;
     }
-
-    public String getClientId() {
-        return clientId;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public Double getValue() {
-        return value;
-    }
+//
+//    public String getClientId() {
+//        return clientId;
+//    }
+//
+//    public String getToken() {
+//        return token;
+//    }
+//
+//    public Double getValue() {
+//        return value;
+//    }
 }

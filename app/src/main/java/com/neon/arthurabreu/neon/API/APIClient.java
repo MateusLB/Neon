@@ -28,7 +28,6 @@ public class APIClient {
                     Request original = chain.request();
 
                     Request request = original.newBuilder()
-                            .header("token", "d3fcd0d1-4562-484b-85d6-0ebb260dc4c7")
                             .method(original.method(), original.body())
                             .build();
 

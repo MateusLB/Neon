@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.neon.arthurabreu.neon.API.APIClient;
 import com.neon.arthurabreu.neon.API.APIService;
 import com.neon.arthurabreu.neon.Model.Task;
@@ -19,6 +20,7 @@ import com.neon.arthurabreu.neon.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -109,7 +111,7 @@ public class SendMoneyActivity extends AppCompatActivity {
 
     public void sendMoney()
     {
-        task = new Task(id, token, value);
+        task = new Task(id, value, token);
         Log.d(TAG, "ID: " + id);
         Log.d(TAG, "TOKEN: " + token);
         Log.d(TAG, "VALUE: " + value);
@@ -122,12 +124,15 @@ public class SendMoneyActivity extends AppCompatActivity {
         call.enqueue(new Callback<Task>() {
             @Override
             public void onResponse(Call<Task> call, Response<Task> response) {
-                Log.d(TAG, "CreateTask Api Response.body: " + response.body());
+
+                Log.d(TAG, "CreateTask Api Response.body: " + response.isSuccessful());
+                Log.d(TAG, "URL " + call.request().url().toString());
             }
 
             @Override
             public void onFailure(Call<Task> call, Throwable t) {
                 System.out.println("Failed!" + t.toString());
+                Log.d(TAG, "URL " + call.request().url().toString());
             }
         });
     }
