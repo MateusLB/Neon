@@ -25,16 +25,16 @@ public class Task {
         this.token = token;
         this.value = value;
     }
-//
-//    public String getClientId() {
-//        return clientId;
-//    }
-//
-//    public String getToken() {
-//        return token;
-//    }
-//
-//    public Double getValue() {
-//        return value;
-//    }
+
+    public String getClientId() {
+        return clientId;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public Double getValue() {
+        return value;
+    }
 }
