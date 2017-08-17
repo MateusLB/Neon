@@ -23,7 +23,7 @@ public interface APIService {
 
     @FormUrlEncoded
     @POST("SendMoney")
-    Call<Task> createTask(@Field("ClienteId") String clientId,
-                          @Field("Valor") Double value,
-                          @Field("Token") String token);
+    Call<Task> sendMoney(@Field("ClienteId") String clientId,
+                         @Field("Valor") Double value,
+                         @Field("Token") String token);
 }
