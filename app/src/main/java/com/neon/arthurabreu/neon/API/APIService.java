@@ -21,15 +21,10 @@ public interface APIService {
     @GET("/GenerateToken?nome=Daenerys&email=stormborn@motherofdragons.com")
     Call<String> getToken();
 
-    //Failed!com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was BOOLEAN at line 1 column 5 path $
+    //Use Call<Void> when no response is expected.
     @FormUrlEncoded
     @POST("SendMoney")
     Call<Void> sendMoney(@Field(value = "ClienteId", encoded = true) String clientId,
                          @Field(value = "Valor", encoded = true) Double value,
                          @Field(value = "Token", encoded = true) String token);
-
-
-    //Response is null
-//    @POST("SendMoney")
-//    Call<Task> sendMoney(@Body Task task);
 }
