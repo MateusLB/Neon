@@ -76,38 +76,6 @@ public class ContactsActivity extends AppCompatActivity{
                 R.layout.list_custom_contacts,
                 contactsArrayList);
 
-//                new DialogInterface() {
-//
-//            //===================================================
-//            //SHOW DIALOG
-//            //===================================================
-//
-//            @Override
-//            public void dialogInterface() {
-//                Dialog dialog = new Dialog(ContactsActivity.this, R.style.ThemeDialogCustom);
-//                dialog.setContentView(R.layout.custom_dialog);
-//                dialog.show();
-//
-//                //===================================================
-//                //BUTTON CLICK LISTENER FOR THE DIALOG
-//                //===================================================
-//
-//                TextView nametv = (TextView) dialog.findViewById(R.id.nameEdt);
-//                nametv.setText(contactsArrayList.get(0).getName());
-//
-//                Button btn = (Button) dialog.findViewById(R.id.btn_sendMoney);
-//                btn.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        SendMoney sendMoneyObj = new SendMoney();
-//                        sendMoneyObj.retrieveToken();
-//                    }
-//                });
-//
-//            }
-//        }) {
-//        };
-
         _listView.setAdapter(listAdapter);
         listAdapter.notifyDataSetChanged();
     }

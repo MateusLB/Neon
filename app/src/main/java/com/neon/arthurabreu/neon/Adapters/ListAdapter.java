@@ -32,13 +32,10 @@ import butterknife.ButterKnife;
 public class ListAdapter extends ArrayAdapter<Contacts> {
 
     Context context;
-    private DialogInterface mListener;
-
 
     public ListAdapter(Context context, int resource, ArrayList<Contacts> contactsArrayList) {
         super(context, R.layout.list_custom_contacts, contactsArrayList);
         this.context = context;
-//        this.mListener = dialoginterface;
     }
 
     @Override
@@ -82,22 +79,11 @@ public class ListAdapter extends ArrayAdapter<Contacts> {
             @Override
             public void onClick(View view) {
 
-//                if(mListener != null)
-//                {
-//                    mListener.dialogInterface();
-//
-//
-//                }
                 Intent intent = new Intent(getContext(), SendMoneyActivity.class);
                 intent.putExtra("Name", contacts.getName());
-//                System.out.println("==========" + contacts.getName());
                 intent.putExtra("Phone", contacts.getPhone());
                 intent.putExtra("Photo", contacts.getResId());
                 context.startActivity(intent);
-
-
-
-
             }
         });
 
