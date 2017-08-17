@@ -83,7 +83,6 @@ public class SendMoneyActivity extends AppCompatActivity {
                 sendMoney();
             }
         });
-
     }
 
     public void loadData()
