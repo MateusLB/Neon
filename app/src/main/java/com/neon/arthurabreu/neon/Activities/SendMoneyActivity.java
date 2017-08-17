@@ -81,6 +81,8 @@ public class SendMoneyActivity extends AppCompatActivity {
                 value = Double.parseDouble(_valueEdt.getText().toString());
 
                 sendMoney();
+
+                //todo Validation on click
             }
         });
     }

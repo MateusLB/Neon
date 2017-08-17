@@ -8,15 +8,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class Task {
 
-//    @SerializedName("ClientId")
-//    String clientId;
-//
-//    @SerializedName("Valor")
-//    Double value;
-//
-//    @SerializedName("Token")
-//    String token;
-
     final String clientId, token;
     final Double value;
 
