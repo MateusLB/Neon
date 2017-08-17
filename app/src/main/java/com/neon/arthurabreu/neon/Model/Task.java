@@ -8,16 +8,19 @@ import com.google.gson.annotations.SerializedName;
 
 public class Task {
 
-    @SerializedName("ClientId")
-    String clientId;
+//    @SerializedName("ClientId")
+//    String clientId;
+//
+//    @SerializedName("Valor")
+//    double value;
+//
+//    @SerializedName("token")
+//    String token;
 
-    @SerializedName("Valor")
-    double value;
+    String clientId, token;
+    Double value;
 
-    @SerializedName("token")
-    String token;
-
-    public Task(String clientId, String token, double value) {
+    public Task(String clientId, String token, Double value) {
         this.clientId = clientId;
         this.token = token;
         this.value = value;
@@ -31,7 +34,7 @@ public class Task {
         return token;
     }
 
-    public double getValue() {
+    public Double getValue() {
         return value;
     }
 }

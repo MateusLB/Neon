@@ -117,7 +117,8 @@ public class SendMoneyActivity extends AppCompatActivity {
         final APIService apiService =
                 APIClient.getClient().create(APIService.class);
 
-        Call<Task> call = apiService.sendMoney(task.getClientId(), task.getValue(), task.getToken());
+//        Call<Task> call = apiService.sendMoney(task.getClientId(), task.getValue(), task.getToken());
+        Call<Task> call = apiService.sendMoney(task);
         call.enqueue(new Callback<Task>() {
             @Override
             public void onResponse(Call<Task> call, Response<Task> response) {

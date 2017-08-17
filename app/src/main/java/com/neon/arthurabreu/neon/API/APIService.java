@@ -21,9 +21,13 @@ public interface APIService {
     @GET("/GenerateToken?nome=Daenerys&email=stormborn@motherofdragons.com")
     Call<String> getToken();
 
-    @FormUrlEncoded
+//    @FormUrlEncoded
+//    @POST("SendMoney")
+//    Call<Task> sendMoney(@Field("ClienteId") String clientId,
+//                         @Field("Valor") Double value,
+//                         @Field("Token") String token);
+
+
     @POST("SendMoney")
-    Call<Task> sendMoney(@Field("ClienteId") String clientId,
-                         @Field("Valor") Double value,
-                         @Field("Token") String token);
+    Call<Task> sendMoney(@Body Task task);
 }
