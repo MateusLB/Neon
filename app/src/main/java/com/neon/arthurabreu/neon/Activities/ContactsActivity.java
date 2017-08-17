@@ -20,7 +20,6 @@ import butterknife.ButterKnife;
 public class ContactsActivity extends AppCompatActivity{
 
     ArrayList<Contacts> contactsArrayList;
-    ArrayList<Integer> integerArrayList;
     ListAdapter listAdapter;
 
     @BindView(R.id.list_view)
@@ -38,7 +37,6 @@ public class ContactsActivity extends AppCompatActivity{
         ButterKnife.bind(this);
 
         contactsArrayList = new ArrayList<>();
-        integerArrayList = new ArrayList<>();
 
         loadData();
     }
