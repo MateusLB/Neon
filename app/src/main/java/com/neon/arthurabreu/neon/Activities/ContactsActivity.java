@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.neon.arthurabreu.neon.Adapters.DialogInterface;
 import com.neon.arthurabreu.neon.Adapters.ListAdapter;
@@ -73,34 +74,39 @@ public class ContactsActivity extends AppCompatActivity{
         listAdapter = new ListAdapter(
                 getApplicationContext(),
                 R.layout.list_custom_contacts,
-                contactsArrayList, new DialogInterface() {
+                contactsArrayList);
 
-            //===================================================
-            //SHOW DIALOG
-            //===================================================
-
-            @Override
-            public void dialogInterface() {
-                Dialog dialog = new Dialog(ContactsActivity.this, R.style.ThemeDialogCustom);
-                dialog.setContentView(R.layout.custom_dialog);
-                dialog.show();
-
-                //===================================================
-                //BUTTON CLICK LISTENER FOR THE DIALOG
-                //===================================================
-
-                Button btn = (Button) dialog.findViewById(R.id.btn_sendMoney);
-                btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        SendMoney sendMoneyObj = new SendMoney();
-                        sendMoneyObj.retrieveToken();
-                    }
-                });
-
-            }
-        }) {
-        };
+//                new DialogInterface() {
+//
+//            //===================================================
+//            //SHOW DIALOG
+//            //===================================================
+//
+//            @Override
+//            public void dialogInterface() {
+//                Dialog dialog = new Dialog(ContactsActivity.this, R.style.ThemeDialogCustom);
+//                dialog.setContentView(R.layout.custom_dialog);
+//                dialog.show();
+//
+//                //===================================================
+//                //BUTTON CLICK LISTENER FOR THE DIALOG
+//                //===================================================
+//
+//                TextView nametv = (TextView) dialog.findViewById(R.id.nameEdt);
+//                nametv.setText(contactsArrayList.get(0).getName());
+//
+//                Button btn = (Button) dialog.findViewById(R.id.btn_sendMoney);
+//                btn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        SendMoney sendMoneyObj = new SendMoney();
+//                        sendMoneyObj.retrieveToken();
+//                    }
+//                });
+//
+//            }
+//        }) {
+//        };
 
         _listView.setAdapter(listAdapter);
         listAdapter.notifyDataSetChanged();

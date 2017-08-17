@@ -1,6 +1,8 @@
 package com.neon.arthurabreu.neon.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
@@ -9,13 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.neon.arthurabreu.neon.Activities.SendMoneyActivity;
 import com.neon.arthurabreu.neon.Model.Contacts;
-import com.neon.arthurabreu.neon.Presenter.SendMoney;
 import com.neon.arthurabreu.neon.R;
 
 import java.util.ArrayList;
@@ -34,10 +35,10 @@ public class ListAdapter extends ArrayAdapter<Contacts> {
     private DialogInterface mListener;
 
 
-    public ListAdapter(Context context, int resource, ArrayList<Contacts> contactsArrayList, DialogInterface dialoginterface) {
+    public ListAdapter(Context context, int resource, ArrayList<Contacts> contactsArrayList) {
         super(context, R.layout.list_custom_contacts, contactsArrayList);
         this.context = context;
-        this.mListener = dialoginterface;
+//        this.mListener = dialoginterface;
     }
 
     @Override
@@ -55,7 +56,7 @@ public class ListAdapter extends ArrayAdapter<Contacts> {
 
         final ListAdapter.ViewHolder viewHolder;
         final View view;
-        Contacts contacts = getItem(position);
+        final Contacts contacts = getItem(position);
 
         if (convertView == null) {
             view = LayoutInflater.from(context).inflate(R.layout.list_custom_contacts, parent, false);
@@ -81,10 +82,22 @@ public class ListAdapter extends ArrayAdapter<Contacts> {
             @Override
             public void onClick(View view) {
 
-                if(mListener != null)
-                {
-                    mListener.dialogInterface();
-                }
+//                if(mListener != null)
+//                {
+//                    mListener.dialogInterface();
+//
+//
+//                }
+                Intent intent = new Intent(getContext(), SendMoneyActivity.class);
+                intent.putExtra("Name", contacts.getName());
+//                System.out.println("==========" + contacts.getName());
+                intent.putExtra("Phone", contacts.getPhone());
+                intent.putExtra("Photo", contacts.getResId());
+                context.startActivity(intent);
+
+
+
+
             }
         });
 
@@ -109,9 +122,11 @@ public class ListAdapter extends ArrayAdapter<Contacts> {
         @BindView(R.id.contact_phone)
         TextView _contactPhone;
 
+
         public ViewHolder(View view){
             super(view);
             ButterKnife.bind(this, view);
+
         }
     }
 }
