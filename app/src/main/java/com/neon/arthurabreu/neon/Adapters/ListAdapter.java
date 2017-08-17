@@ -83,6 +83,7 @@ public class ListAdapter extends ArrayAdapter<Contacts> {
                 intent.putExtra("Name", contacts.getName());
                 intent.putExtra("Phone", contacts.getPhone());
                 intent.putExtra("Photo", contacts.getResId());
+                intent.putExtra("ClientId", contacts.getClientId());
                 context.startActivity(intent);
             }
         });

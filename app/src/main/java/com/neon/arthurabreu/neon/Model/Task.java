@@ -1,13 +1,21 @@
 package com.neon.arthurabreu.neon.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by desenv on 16/08/17.
  */
 
 public class Task {
 
-    private String clientId, token;
-    private double value;
+    @SerializedName("ClientId")
+    String clientId;
+
+    @SerializedName("Valor")
+    double value;
+
+    @SerializedName("token")
+    String token;
 
     public Task(String clientId, String token, double value) {
         this.clientId = clientId;

@@ -6,11 +6,11 @@ package com.neon.arthurabreu.neon.Model;
 
 public class Contacts {
 
-    private int id,  clientId, resId;
-    private String name, phone;
+    private int id, resId;
+    private String name, phone, clientId;
 
 
-    public Contacts(int id, int clientId, String phone, String name,  int resId) {
+    public Contacts(int id, String clientId, String phone, String name,  int resId) {
         this.id = id;
         this.clientId = clientId;
         this.phone = phone;
@@ -22,7 +22,7 @@ public class Contacts {
         return id;
     }
 
-    public int getClientId() {
+    public String getClientId() {
         return clientId;
     }
 
