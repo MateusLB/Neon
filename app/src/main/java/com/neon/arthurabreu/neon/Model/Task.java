@@ -1,11 +1,5 @@
 package com.neon.arthurabreu.neon.Model;
 
-import com.google.gson.annotations.SerializedName;
-
-/**
- * Created by desenv on 16/08/17.
- */
-
 public class Task {
 
     final String clientId, token;

@@ -1,9 +1,5 @@
 package com.neon.arthurabreu.neon.Model;
 
-/**
- * Created by desenv on 16/08/17.
- */
-
 public class Contacts {
 
     private int id, resId, sum;

@@ -23,11 +23,6 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
-/**
- * Created by desenv on 16/08/17.
- */
-
 public class ListAdapter extends ArrayAdapter<Contacts> {
 
     Context context;

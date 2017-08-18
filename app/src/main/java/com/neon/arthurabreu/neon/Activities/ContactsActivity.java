@@ -11,10 +11,6 @@ import com.neon.arthurabreu.neon.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by desenv on 16/08/17.
- */
-
 public class ContactsActivity extends AppCompatActivity{
 
 

@@ -9,10 +9,6 @@ import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by desenv on 16/08/17.
- */
-
 public class APIClient {
 
     public static final String BASE_URL = "http://processoseletivoneon.azurewebsites.net";

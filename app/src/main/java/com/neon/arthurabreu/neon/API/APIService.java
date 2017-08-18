@@ -11,10 +11,6 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
-/**
- * Created by desenv on 16/08/17.
- */
-
 public interface APIService {
 
     @GET("/GenerateToken?nome=Daenerys&email=stormborn@motherofdragons.com")

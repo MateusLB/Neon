@@ -1,5 +1,6 @@
 package com.neon.arthurabreu.neon.Activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -25,11 +26,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.neon.arthurabreu.neon.Activities.SendMoneyActivity.TOKEN;
-
-
-/**
- * Created by desenv on 17/08/17.
- */
 
 public class GetTransfersActivity extends AppCompatActivity{
 
@@ -126,5 +122,12 @@ public class GetTransfersActivity extends AppCompatActivity{
                 System.out.println("Failed!" + t.toString());
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }

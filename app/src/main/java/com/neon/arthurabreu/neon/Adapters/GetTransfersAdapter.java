@@ -21,10 +21,6 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by desenv on 17/08/17.
- */
-
 public class GetTransfersAdapter extends ArrayAdapter<Contacts> {
 
     Context context;

@@ -4,10 +4,6 @@ import com.neon.arthurabreu.neon.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by desenv on 18/08/17.
- */
-
 public class ContactsArray {
 
     private ArrayList<Contacts> contactsArrayList = new ArrayList<>();

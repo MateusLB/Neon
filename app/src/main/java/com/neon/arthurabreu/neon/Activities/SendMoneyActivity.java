@@ -1,6 +1,6 @@
 package com.neon.arthurabreu.neon.Activities;
 
-import android.content.Context;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.neon.arthurabreu.neon.API.APIClient;
@@ -25,10 +26,6 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-/**
- * Created by desenv on 17/08/17.
- */
 
 public class SendMoneyActivity extends AppCompatActivity {
 
@@ -129,6 +126,12 @@ public class SendMoneyActivity extends AppCompatActivity {
         editor.putString(TOKEN, token);
         editor.commit();
 
+        final ProgressDialog progressDialog = new ProgressDialog(SendMoneyActivity.this,
+                R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Sending Money...");
+        progressDialog.show();
+
 
         final APIService apiService =
                 APIClient.getClient().create(APIService.class);
@@ -139,12 +142,56 @@ public class SendMoneyActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 Log.d(TAG, "CreateTask Api Response.isSuccessful: " + response.isSuccessful());
+
+                boolean success = response.isSuccessful();
+
+                if (success){
+                    new android.os.Handler().postDelayed(
+                            new Runnable() {
+                                public void run() {
+                                    // On complete call either onSendSuccess or onSendFailed
+                                    onEventSuccess();
+                                    // onSendFailed();
+                                    progressDialog.dismiss();
+                                }
+                            }, 2000);
+                }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+
                 System.out.println("Failed!" + t.toString());
+                progressDialog.dismiss();
+                onEventFailed();
             }
         });
+    }
+
+    public void onEventSuccess() {
+
+        Toast.makeText(SendMoneyActivity.this, "Money was successfully sent!", Toast.LENGTH_SHORT).show();
+        _sendMoney.setEnabled(true);
+
+        jumpToLogin();
+    }
+
+    public void onEventFailed() {
+        Toast.makeText(SendMoneyActivity.this, "Couldn't send money, please try again later.", Toast.LENGTH_SHORT).show();
+        _sendMoney.setEnabled(true);
+
+        jumpToLogin();
+    }
+
+    @Override
+    public void onBackPressed() {
+        jumpToLogin();
+    }
+
+    public void jumpToLogin()
+    {
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }
