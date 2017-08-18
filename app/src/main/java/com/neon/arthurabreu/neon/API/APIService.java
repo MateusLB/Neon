@@ -2,12 +2,14 @@ package com.neon.arthurabreu.neon.API;
 
 import com.neon.arthurabreu.neon.Model.Transactions;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by desenv on 16/08/17.
@@ -25,6 +27,6 @@ public interface APIService {
                          @Field(value = "Valor", encoded = true) Double value,
                          @Field(value = "Token", encoded = true) String token);
 
-    @GET("/GetTransfers?{token}")
-    Call<Transactions> getTransactions(@Path("token") String token);
+    @GET("/GetTransfers?")
+    Call<List<Transactions>> getTransactions(@Query("token") String token);
 }

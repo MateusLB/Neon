@@ -27,6 +27,9 @@
         <activity android:name=".Activities.SendMoneyActivity"
             android:screenOrientation="portrait"></activity>
 
+        <activity android:name=".Activities.GetTransfersActivity"
+            android:screenOrientation="portrait"></activity>
+
     </application>
 
 </manifest>

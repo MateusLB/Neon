@@ -161,6 +161,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onEventSuccess() {
+
+        //Jump to the next activity
+        Intent intent = new Intent(getApplicationContext(), GetTransfersActivity.class);
+        startActivity(intent);
+
         _eventsButton.setEnabled(true);
         finish();
     }

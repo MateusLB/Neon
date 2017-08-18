@@ -1,7 +1,8 @@
 package com.neon.arthurabreu.neon.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
@@ -13,27 +14,32 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.neon.arthurabreu.neon.Activities.SendMoneyActivity;
 import com.neon.arthurabreu.neon.Model.Contacts;
 import com.neon.arthurabreu.neon.Model.Transactions;
 import com.neon.arthurabreu.neon.R;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.neon.arthurabreu.neon.Activities.ContactsActivity.SET;
+import static com.neon.arthurabreu.neon.Activities.ContactsActivity.contactsArrayList;
 
 /**
  * Created by desenv on 17/08/17.
  */
 
-public class GetTransfersAdapter extends ArrayAdapter<Contacts> {
+public class GetTransfersAdapter extends ArrayAdapter<Transactions> {
 
     Context context;
+    int sum = 0;
 
-    public GetTransfersAdapter(Context context, int resource, ArrayList<Contacts> contactsArrayList) {
-        super(context, R.layout.list_custom_contacts, contactsArrayList);
+    public GetTransfersAdapter(Context context, int resource, ArrayList<Transactions> transactionsArrayList) {
+        super(context, R.layout.list_custom_transactions, transactionsArrayList);
         this.context = context;
     }
 
@@ -55,7 +61,7 @@ public class GetTransfersAdapter extends ArrayAdapter<Contacts> {
         final Transactions transactions = getItem(position);
 
         if (convertView == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.list_custom_contacts, parent, false);
+            view = LayoutInflater.from(context).inflate(R.layout.list_custom_transactions, parent, false);
             viewHolder = new GetTransfersAdapter.ViewHolder(view);
             view.setTag(viewHolder);
         } else {
@@ -67,13 +73,44 @@ public class GetTransfersAdapter extends ArrayAdapter<Contacts> {
         //CELL FILLING
         //===================================================
 
-        viewHolder._contactName.setText(transactions.getName());
-        viewHolder._contactPhone.setText(transactions.getPhone());
-        viewHolder._contactSum.setText(transactions.getValor());
+        //todo for to run through the contacts array
+//        for (Contacts contacts : contactsArrayList)
+//        {
+//            if (Integer.parseInt(contacts.getClientId()) == transactions.getClienteId())
+//            {
+//                viewHolder._contactName.setText(contacts.getName());
+//                viewHolder._contactPhone.setText(contacts.getPhone());
+//
+//                viewHolder._contactSum.setText(sum);
+//            }
+//        }
 
-        Glide.with(context)
-                .load(contacts.getResId())
-                .into(viewHolder._profilePic);
+        //todo change this
+        viewHolder._contactName.setText(transactions.getClienteId());
+        sum += transactions.getValor();
+        viewHolder._contactSum.setText(sum);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        Set contactsSet = sharedPref.getStringSet(SET, new HashSet<String>());
+
+
+        //todo test this
+        if(contactsSet != null){
+
+            Iterator<String> iterator = contactsSet.iterator();
+
+            while(iterator.hasNext()){
+                String id = iterator.next();
+                System.out.println("Set iteration...");
+                System.out.println(id);
+            }
+        }
+
+
+
+//        Glide.with(context)
+//                .load(contacts.getResId())
+//                .into(viewHolder._profilePic);
 
         return view;
     }
@@ -99,11 +136,9 @@ public class GetTransfersAdapter extends ArrayAdapter<Contacts> {
         @BindView(R.id.contact_sum)
         TextView _contactSum;
 
-
         public ViewHolder(View view){
             super(view);
             ButterKnife.bind(this, view);
-
         }
     }
 

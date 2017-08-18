@@ -1,7 +1,10 @@
 package com.neon.arthurabreu.neon.Activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -30,6 +33,7 @@ import retrofit2.Response;
 public class SendMoneyActivity extends AppCompatActivity {
 
     public static final String TAG = "SendMoneyActivity";
+    public static final String TOKEN = "Token";
 
     @BindView(R.id.nameEdt)
     TextView _nameEdt;
@@ -57,7 +61,7 @@ public class SendMoneyActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
         String name = extras.getString("Name");
@@ -81,8 +85,6 @@ public class SendMoneyActivity extends AppCompatActivity {
                 value = Double.parseDouble(_valueEdt.getText().toString());
 
                 sendMoney();
-
-                //todo Validation on click
             }
         });
     }
@@ -99,6 +101,11 @@ public class SendMoneyActivity extends AppCompatActivity {
 
                 token = response.body().toString();
                 Log.d(TAG, "GetToken Api Response.body: " + token);
+
+
+                // TOKEN - a static String variable like:
+                //public static final String TOKEN = "Token";
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString(TOKEN, token).commit();
             }
 
             @Override
@@ -114,6 +121,14 @@ public class SendMoneyActivity extends AppCompatActivity {
         Log.d(TAG, "ID: " + id);
         Log.d(TAG, "TOKEN: " + token);
         Log.d(TAG, "VALUE: " + value);
+
+        // TOKEN - a static String variable like:
+        //public static final String TOKEN = "Token";
+        SharedPreferences sharedPref = getSharedPreferences(TOKEN, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(TOKEN, token);
+        editor.commit();
+
 
         final APIService apiService =
                 APIClient.getClient().create(APIService.class);

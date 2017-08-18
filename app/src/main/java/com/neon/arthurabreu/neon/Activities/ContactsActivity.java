@@ -1,5 +1,7 @@
 package com.neon.arthurabreu.neon.Activities;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
@@ -8,7 +10,11 @@ import com.neon.arthurabreu.neon.Adapters.ListAdapter;
 import com.neon.arthurabreu.neon.Model.Contacts;
 import com.neon.arthurabreu.neon.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,7 +25,9 @@ import butterknife.ButterKnife;
 
 public class ContactsActivity extends AppCompatActivity{
 
-    ArrayList<Contacts> contactsArrayList;
+    public static final String SET = "Set";
+
+    public static ArrayList<Contacts> contactsArrayList;
     ListAdapter listAdapter;
 
     @BindView(R.id.list_view)
@@ -63,6 +71,15 @@ public class ContactsActivity extends AppCompatActivity{
         contactsArrayList.add(new Contacts(14, "14", "938-891-9998", "Tyrion Lannister", R.drawable.tyrion));
         contactsArrayList.add(new Contacts(15, "15", "128-604-5116", "Margaery Tyrell ", R.drawable.margaery));
 
+
+        Set set = new HashSet(contactsArrayList);
+
+//        System.out.println("Set values .....");
+//        for (Object temp : set){
+//            System.out.println(temp);
+//        }
+        saveSharedContactsArray(set);
+
         listAdapter = new ListAdapter(
                 getApplicationContext(),
                 R.layout.list_custom_contacts,
@@ -70,5 +87,15 @@ public class ContactsActivity extends AppCompatActivity{
 
         _listView.setAdapter(listAdapter);
         listAdapter.notifyDataSetChanged();
+    }
+
+    public void saveSharedContactsArray(Set set) {
+
+        // TOKEN - a static String variable like:
+        //public static final String TOKEN = "Token";
+        SharedPreferences sharedPref = getSharedPreferences(SET, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putStringSet(SET, set);
+        editor.commit();
     }
 }
