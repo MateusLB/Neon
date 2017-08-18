@@ -64,14 +64,13 @@ public class GetTransfersAdapter extends ArrayAdapter<Contacts> {
         //CELL FILLING
         //===================================================
 
-        viewHolder._contactName.setText(transactions.getName());
-        viewHolder._contactPhone.setText(transactions.getPhone());
-        viewHolder._contactSum.setText(String.valueOf(transactions.getSum()));
+            viewHolder._contactName.setText(transactions.getName());
+            viewHolder._contactPhone.setText(transactions.getPhone());
+            viewHolder._contactSum.setText(String.valueOf(transactions.getSum()));
 
-
-        Glide.with(context)
-                .load(transactions.getResId())
-                .into(viewHolder._profilePic);
+            Glide.with(context)
+                    .load(transactions.getResId())
+                    .into(viewHolder._profilePic);
 
         return view;
     }

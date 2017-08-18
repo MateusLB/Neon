@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.neon.arthurabreu.neon.API.APIClient;
 import com.neon.arthurabreu.neon.API.APIService;
 import com.neon.arthurabreu.neon.Adapters.GetTransfersAdapter;
+import com.neon.arthurabreu.neon.Model.Contacts;
 import com.neon.arthurabreu.neon.Model.ContactsArray;
 import com.neon.arthurabreu.neon.Model.Transactions;
 import com.neon.arthurabreu.neon.R;
@@ -80,25 +81,41 @@ public class GetTransfersActivity extends AppCompatActivity{
                 //Loop through response and contacts to get the sum of money deposited
                 for (int i = 0; i < transactionsArrayList.size(); i++)
                 {
-                    for (int j = 0; j < 15; j++){
+                    for (int j = 0; j < contactsArray.getContactsArrayList().size(); j++){
+
                         if (transactionsArrayList.get(i).getClienteId() == Integer.parseInt(contactsArray.getContactsArrayList().get(j).getClientId())) {
 
+                            //Get the sum value from inside the array positio j
                             sum = contactsArray.getContactsArrayList().get(j).getSum();
 
+                            //Set the sum to the value it has + the new value found for that id
                             sum += transactionsArrayList.get(i).getValor();
 
+                            //Set sum value inside the array
                             contactsArray.getContactsArrayList().get(j).setSum(sum);
 
-                            System.out.println(contactsArray.getContactsArrayList().get(j).getName());
-                            System.out.println(contactsArray.getContactsArrayList().get(j).getSum());
+                            //For simple tests purpose
+//                            System.out.println(contactsArray.getContactsArrayList().get(j).getName());
+//                            System.out.println(contactsArray.getContactsArrayList().get(j).getSum());
                         }
+                    }
+                }
+
+                //Create new ArrayList for the listview display, but without the ones that doesn't have money deposited
+                ArrayList<Contacts> arrayList = new ArrayList<>();
+
+                for (Contacts contacts : contactsArray.getContactsArrayList())
+                {
+                    if (contacts.getSum() != 0)
+                    {
+                        arrayList.add(contacts);
                     }
                 }
 
                 getTransfersAdapter = new GetTransfersAdapter(
                         getApplicationContext(),
                         R.layout.list_custom_transactions,
-                        contactsArray.getContactsArrayList());
+                        arrayList);
 
                 _listView.setAdapter(getTransfersAdapter);
                 getTransfersAdapter.notifyDataSetChanged();
