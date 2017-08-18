@@ -3,10 +3,13 @@ package com.neon.arthurabreu.neon.Activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.icu.text.NumberFormat;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +21,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.neon.arthurabreu.neon.API.APIClient;
 import com.neon.arthurabreu.neon.API.APIService;
+import com.neon.arthurabreu.neon.Model.NumberTextWatcher;
 import com.neon.arthurabreu.neon.Model.Task;
 import com.neon.arthurabreu.neon.R;
 
@@ -57,6 +61,9 @@ public class SendMoneyActivity extends AppCompatActivity {
         setContentView(R.layout.custom_dialog);
 
         ButterKnife.bind(this);
+
+        _valueEdt.setInputType(InputType.TYPE_CLASS_NUMBER);
+        _valueEdt.addTextChangedListener(new NumberTextWatcher(_valueEdt, "#,###"));
 
         final Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -180,11 +187,6 @@ public class SendMoneyActivity extends AppCompatActivity {
         Toast.makeText(SendMoneyActivity.this, "Couldn't send money, please try again later.", Toast.LENGTH_SHORT).show();
         _sendMoney.setEnabled(true);
 
-        jumpToLogin();
-    }
-
-    @Override
-    public void onBackPressed() {
         jumpToLogin();
     }
 
