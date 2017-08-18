@@ -2,7 +2,6 @@ package com.neon.arthurabreu.neon.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
@@ -69,7 +68,7 @@ public class ListAdapter extends ArrayAdapter<Contacts> {
         //===================================================
 
         viewHolder._contactName.setText(contacts.getName());
-        viewHolder._contactPhone.setText(contacts.getPhone());
+    viewHolder._contactPhone.setText(contacts.getPhone());
 
         Glide.with(context)
                 .load(contacts.getResId())

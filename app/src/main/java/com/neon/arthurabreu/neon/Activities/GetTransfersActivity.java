@@ -1,22 +1,19 @@
 package com.neon.arthurabreu.neon.Activities;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ListView;
 
 import com.neon.arthurabreu.neon.API.APIClient;
 import com.neon.arthurabreu.neon.API.APIService;
 import com.neon.arthurabreu.neon.Adapters.GetTransfersAdapter;
-import com.neon.arthurabreu.neon.Adapters.ListAdapter;
+import com.neon.arthurabreu.neon.Model.ContactsArray;
 import com.neon.arthurabreu.neon.Model.Transactions;
 import com.neon.arthurabreu.neon.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,13 +32,15 @@ import static com.neon.arthurabreu.neon.Activities.SendMoneyActivity.TOKEN;
 
 public class GetTransfersActivity extends AppCompatActivity{
 
-    public static final String TAG = "GetTransfersActivity";
+    int sum;
 
     @BindView(R.id.list_view)
     ListView _listView;
 
     GetTransfersAdapter getTransfersAdapter;
     ArrayList<Transactions> transactionsArrayList;
+
+    ContactsArray contactsArray;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +50,8 @@ public class GetTransfersActivity extends AppCompatActivity{
         ButterKnife.bind(this);
 
         transactionsArrayList = new ArrayList<>();
+
+        contactsArray = new ContactsArray();
 
         //Get the Token saved for general use
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -71,18 +72,33 @@ public class GetTransfersActivity extends AppCompatActivity{
 
                 transactionsArrayList.clear();
 
-//                String test = response.body().get(0).getData().toString();
-//                Log.d(TAG, "GetTransactions Api Response.body: " + test);
-
-
                 for(int i = 0; i < response.body().size(); i++){
                     transactionsArrayList.add(response.body().get(i));
+                }
+
+
+                //Loop through response and contacts to get the sum of money deposited
+                for (int i = 0; i < transactionsArrayList.size(); i++)
+                {
+                    for (int j = 0; j < 15; j++){
+                        if (transactionsArrayList.get(i).getClienteId() == Integer.parseInt(contactsArray.getContactsArrayList().get(j).getClientId())) {
+
+                            sum = contactsArray.getContactsArrayList().get(j).getSum();
+
+                            sum += transactionsArrayList.get(i).getValor();
+
+                            contactsArray.getContactsArrayList().get(j).setSum(sum);
+
+                            System.out.println(contactsArray.getContactsArrayList().get(j).getName());
+                            System.out.println(contactsArray.getContactsArrayList().get(j).getSum());
+                        }
+                    }
                 }
 
                 getTransfersAdapter = new GetTransfersAdapter(
                         getApplicationContext(),
                         R.layout.list_custom_transactions,
-                        transactionsArrayList);
+                        contactsArray.getContactsArrayList());
 
                 _listView.setAdapter(getTransfersAdapter);
                 getTransfersAdapter.notifyDataSetChanged();

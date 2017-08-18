@@ -12,9 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.neon.arthurabreu.neon.Model.Contacts;
-import com.neon.arthurabreu.neon.Model.ContactsArray;
-import com.neon.arthurabreu.neon.Model.Transactions;
 import com.neon.arthurabreu.neon.R;
 
 import java.util.ArrayList;
@@ -26,12 +25,11 @@ import butterknife.ButterKnife;
  * Created by desenv on 17/08/17.
  */
 
-public class GetTransfersAdapter extends ArrayAdapter<Transactions> {
+public class GetTransfersAdapter extends ArrayAdapter<Contacts> {
 
     Context context;
-    int sum = 0;
 
-    public GetTransfersAdapter(Context context, int resource, ArrayList<Transactions> transactionsArrayList) {
+    public GetTransfersAdapter(Context context, int resource, ArrayList<Contacts> transactionsArrayList) {
         super(context, R.layout.list_custom_transactions, transactionsArrayList);
         this.context = context;
     }
@@ -51,7 +49,7 @@ public class GetTransfersAdapter extends ArrayAdapter<Transactions> {
 
         final GetTransfersAdapter.ViewHolder viewHolder;
         final View view;
-        final Transactions transactions = getItem(position);
+        final Contacts transactions = getItem(position);
 
         if (convertView == null) {
             view = LayoutInflater.from(context).inflate(R.layout.list_custom_transactions, parent, false);
@@ -66,29 +64,17 @@ public class GetTransfersAdapter extends ArrayAdapter<Transactions> {
         //CELL FILLING
         //===================================================
 
-        //todo for to run through the contacts array
-        ContactsArray contactsArray = new ContactsArray();
-
-        for (Contacts contacts : contactsArray.getContactsArrayList())
-        {
-            if (Integer.parseInt(contacts.getClientId()) == transactions.getClienteId())
-            {
-                viewHolder._contactName.setText(contacts.getName());
-                viewHolder._contactPhone.setText(contacts.getPhone());
-                sum += transactions.getValor();
-                viewHolder._contactSum.setText(String.valueOf(sum));
-            }
-        }
+        viewHolder._contactName.setText(transactions.getName());
+        viewHolder._contactPhone.setText(transactions.getPhone());
+        viewHolder._contactSum.setText(String.valueOf(transactions.getSum()));
 
 
-//        Glide.with(context)
-//                .load(contacts.getResId())
-//                .into(viewHolder._profilePic);
+        Glide.with(context)
+                .load(transactions.getResId())
+                .into(viewHolder._profilePic);
 
         return view;
     }
-
-
 
     //===================================================
     //VIEWHOLDER CLASS
