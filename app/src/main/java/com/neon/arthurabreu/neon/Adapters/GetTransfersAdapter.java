@@ -1,8 +1,6 @@
 package com.neon.arthurabreu.neon.Adapters;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
@@ -15,19 +13,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.neon.arthurabreu.neon.Model.Contacts;
+import com.neon.arthurabreu.neon.Model.ContactsArray;
 import com.neon.arthurabreu.neon.Model.Transactions;
 import com.neon.arthurabreu.neon.R;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.neon.arthurabreu.neon.Activities.ContactsActivity.SET;
-import static com.neon.arthurabreu.neon.Activities.ContactsActivity.contactsArrayList;
 
 /**
  * Created by desenv on 17/08/17.
@@ -74,38 +67,18 @@ public class GetTransfersAdapter extends ArrayAdapter<Transactions> {
         //===================================================
 
         //todo for to run through the contacts array
-//        for (Contacts contacts : contactsArrayList)
-//        {
-//            if (Integer.parseInt(contacts.getClientId()) == transactions.getClienteId())
-//            {
-//                viewHolder._contactName.setText(contacts.getName());
-//                viewHolder._contactPhone.setText(contacts.getPhone());
-//
-//                viewHolder._contactSum.setText(sum);
-//            }
-//        }
+        ContactsArray contactsArray = new ContactsArray();
 
-        //todo change this
-        viewHolder._contactName.setText(transactions.getClienteId());
-        sum += transactions.getValor();
-        viewHolder._contactSum.setText(sum);
-
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        Set contactsSet = sharedPref.getStringSet(SET, new HashSet<String>());
-
-
-        //todo test this
-        if(contactsSet != null){
-
-            Iterator<String> iterator = contactsSet.iterator();
-
-            while(iterator.hasNext()){
-                String id = iterator.next();
-                System.out.println("Set iteration...");
-                System.out.println(id);
+        for (Contacts contacts : contactsArray.getContactsArrayList())
+        {
+            if (Integer.parseInt(contacts.getClientId()) == transactions.getClienteId())
+            {
+                viewHolder._contactName.setText(contacts.getName());
+                viewHolder._contactPhone.setText(contacts.getPhone());
+                sum += transactions.getValor();
+                viewHolder._contactSum.setText(String.valueOf(sum));
             }
         }
-
 
 
 //        Glide.with(context)
@@ -114,6 +87,8 @@ public class GetTransfersAdapter extends ArrayAdapter<Transactions> {
 
         return view;
     }
+
+
 
     //===================================================
     //VIEWHOLDER CLASS
