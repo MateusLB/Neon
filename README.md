@@ -7,4 +7,4 @@ your token to access the webservice.
 
 
 ## Screen-record
-![screenRecord](https://i.imgur.com/a/qrNVG.gif)
+![screenRecord](http://i.imgur.com/MNW61eg.gif)
