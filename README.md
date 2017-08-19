@@ -8,3 +8,5 @@ your token to access the webservice.
 
 ## Screen-record
 ![screenRecord](https://i.imgur.com/eoeESmz.gif) 
+
+https://i.imgur.com/eoeESmz.gif
