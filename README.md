@@ -7,4 +7,6 @@ your token to access the webservice.
 
 
 ## Screen-record
-![screenRecord](https://i.imgur.com/MNW61eg.gif)
+![screenRecord](https://i.imgur.com/MNW61eg.gif) 
+
+(Markodown not working: https://imgur.com/MNW61eg)
