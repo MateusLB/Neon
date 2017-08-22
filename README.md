@@ -5,8 +5,5 @@ Simple App with a list of characters to send money and check which ones you sent
 Uses REST API, with GET and POST, for getting the transfers you made and send your money plus 
 your token to access the webservice.
 
-
 ## Screen-record
-![screenRecord](http://i.imgur.com/eoeESmz.gif) 
-
-https://i.imgur.com/eoeESmz.gif
+![screenRecord](https://i.imgur.com/00eiKKp.gif)
