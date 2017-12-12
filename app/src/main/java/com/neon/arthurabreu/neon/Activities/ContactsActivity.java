@@ -52,4 +52,6 @@ public class ContactsActivity extends AppCompatActivity{
         _listView.setAdapter(listAdapter);
         listAdapter.notifyDataSetChanged();
     }
+
+
 }
