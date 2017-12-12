@@ -1,18 +1,18 @@
 package com.neon.arthurabreu.neon.Login;
 
-import android.graphics.Color;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.neon.arthurabreu.neon.R;
-import com.pnikosis.materialishprogress.ProgressWheel;
+import com.neon.arthurabreu.neon.Utils.DialogUtils;
 
 public class LoginFragment extends Fragment implements LoginContracts.View{
 
@@ -22,6 +22,7 @@ public class LoginFragment extends Fragment implements LoginContracts.View{
     @BindView(R.id.btn_Events) Button _eventsButton;
 
     LoginContracts.Presenter presenter;
+    Dialog dialog;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -44,14 +45,14 @@ public class LoginFragment extends Fragment implements LoginContracts.View{
         _sendMoneyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.sendMoney();
+                presenter.getContacts();
             }
         });
 
         _eventsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.events();
+                presenter.gotToEvents();
             }
         });
 
@@ -60,17 +61,31 @@ public class LoginFragment extends Fragment implements LoginContracts.View{
 
     @Override
     public void showLoading() {
-        ProgressWheel wheel = new ProgressWheel(getContext());
-        wheel.setBarColor(Color.WHITE);
+        if(dialog==null)
+            dialog = DialogUtils.showProgressDialog(getContext());
+        dialog.show();
     }
 
     @Override
     public void hideLoading() {
-
+        if(dialog!=null)
+            dialog.dismiss();
     }
 
     @Override
     public void showAlertError(String errorMessage) {
-
+        DialogUtils.messageDialog(getActivity(),errorMessage,null);
     }
+
+//    @Override
+//    public void onSendFailed() {
+//        Toast.makeText(getContext(), R.string.operationFailed, Toast.LENGTH_LONG).show();
+//        _sendMoneyButton.setEnabled(true);
+//    }
+//
+//    @Override
+//    public void onEventFailed() {
+//        Toast.makeText(getContext(), R.string.operationFailed, Toast.LENGTH_LONG).show();
+//        _eventsButton.setEnabled(true);
+//    }
 }

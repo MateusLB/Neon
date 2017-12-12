@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        // On complete call either onSendSuccess or onSendFailed
+                        // On complete call either goToSendMoney or onSendFailed
                         onSendSuccess();
                         // onSendFailed();
                         progressDialog.dismiss();
@@ -114,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        // On complete call either onSendSuccess or onSendFailed
+                        // On complete call either goToSendMoney or onSendFailed
                         onEventSuccess();
                         // onSendFailed();
                         progressDialog.dismiss();

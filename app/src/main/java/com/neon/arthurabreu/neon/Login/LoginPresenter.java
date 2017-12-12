@@ -26,42 +26,18 @@ public class LoginPresenter implements LoginContracts.Presenter, LoginContracts.
     }
 
     @Override
-    public void sendMoney() {
+    public void getContacts() {
         interactorInput.fetchContacts(context);
-
     }
 
     @Override
-    public void events() {
-
+    public void gotToEvents() {
+        //Jump to the next fragment
     }
 
     @Override
-    public void onSendSuccess() {
-        //Jump to the next activity
-
-
-
-    }
-
-    @Override
-    public void onSendFailed() {
-
-    }
-
-    @Override
-    public void onEventSuccess() {
-
-    }
-
-    @Override
-    public void onEventFailed() {
-
-    }
-
-    @Override
-    public boolean validate() {
-        return false;
+    public void goToSendMoney() {
+        //Jump to the next fragment
     }
 
     @Override
@@ -72,5 +48,10 @@ public class LoginPresenter implements LoginContracts.Presenter, LoginContracts.
     @Override
     public void hideLoading() {
         view.hideLoading();
+    }
+
+    @Override
+    public void showAlertError(String errorMessage) {
+        view.showAlertError(errorMessage);
     }
 }

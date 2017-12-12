@@ -15,22 +15,18 @@ public class LoginContracts {
     }
 
     public interface Presenter{
-        void sendMoney();
-        void events();
-        void onSendSuccess();
-        void onSendFailed();
-        void onEventSuccess();
-        void onEventFailed();
-        boolean validate();
+        void getContacts();
+        void gotToEvents();
+        void goToSendMoney();
     }
 
     public interface InteractorInput{
         void fetchContacts(Context context);
-
     }
 
     public interface InteractorOutput{
         void showLoading();
         void hideLoading();
+        void showAlertError(String errorMessage);
     }
 }
