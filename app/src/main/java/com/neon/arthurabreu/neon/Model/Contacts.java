@@ -5,7 +5,6 @@ public class Contacts {
     private int id, resId, sum;
     private String name, phone, clientId;
 
-
     public Contacts(int id, String clientId, String phone, String name,  int resId, int sum) {
         this.id = id;
         this.clientId = clientId;
