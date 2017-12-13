@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/round_corner_background"
+    android:background="@color/colorAccent"
     android:orientation="vertical"
     android:layout_margin="12dp"
     android:layout_width="match_parent"
@@ -34,7 +34,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="@color/azul_escuro_treinus" />
+            android:background="@color/accent" />
     </LinearLayout>
 
     <RelativeLayout
@@ -59,7 +59,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/azul_escuro_treinus"
+                    android:textColor="@color/accent"
                     android:layout_margin="12dp"
                     android:id="@+id/content" />
             </LinearLayout>
@@ -71,11 +71,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ok"
+        android:text="OK"
         android:id="@+id/ok"
         android:layout_weight="1"
         android:layout_marginBottom="8dp"
-        android:background="@color/azul_treinus"
+        android:background="@color/accent"
         android:textColor="@color/white"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>

@@ -14,7 +14,6 @@ import com.neon.arthurabreu.neon.R;
 
 public class LoginPresenter implements LoginContracts.Presenter, LoginContracts.InteractorOutput {
 
-
     LoginContracts.View view;
     LoginContracts.InteractorInput interactorInput;
     Context context;

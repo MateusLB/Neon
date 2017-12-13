@@ -77,15 +77,4 @@ public class LoginFragment extends Fragment implements LoginContracts.View{
         DialogUtils.messageDialog(getActivity(),errorMessage,null);
     }
 
-//    @Override
-//    public void onSendFailed() {
-//        Toast.makeText(getContext(), R.string.operationFailed, Toast.LENGTH_LONG).show();
-//        _sendMoneyButton.setEnabled(true);
-//    }
-//
-//    @Override
-//    public void onEventFailed() {
-//        Toast.makeText(getContext(), R.string.operationFailed, Toast.LENGTH_LONG).show();
-//        _eventsButton.setEnabled(true);
-//    }
 }
