@@ -17,7 +17,6 @@ public class LoginContracts {
     public interface Presenter{
         void getContacts();
         void gotToEvents();
-        void goToSendMoney();
     }
 
     public interface InteractorInput{

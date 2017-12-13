@@ -27,6 +27,7 @@ public class LoginPresenter implements LoginContracts.Presenter, LoginContracts.
     @Override
     public void getContacts() {
         interactorInput.fetchContacts(context);
+        goToSendMoney();
     }
 
     @Override
@@ -34,9 +35,10 @@ public class LoginPresenter implements LoginContracts.Presenter, LoginContracts.
         //Jump to the next fragment
     }
 
-    @Override
-    public void goToSendMoney() {
+    private void goToSendMoney() {
         //Jump to the next fragment
+        Intent intent = new Intent(context, ContactsActivity.class);
+        context.startActivity(intent);
     }
 
     @Override

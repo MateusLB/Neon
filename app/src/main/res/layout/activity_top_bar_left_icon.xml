@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout2"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:id="@+id/toolbar_info"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            android:background="@color/white"
+            android:minHeight="?android:attr/actionBarSize"
+            app:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <RelativeLayout
+                        android:id="@+id/icon_layout"
+                        android:layout_width="?android:attr/actionBarSize"
+                        android:layout_height="?android:attr/actionBarSize"
+                        android:layout_alignParentLeft="true">
+
+                        <ImageView
+                            android:id="@+id/icon"
+                            android:layout_width="?android:attr/actionBarSize"
+                            android:layout_height="?android:attr/actionBarSize"
+                            android:adjustViewBounds="true"
+                            android:padding="12dp"
+                            android:tint="@color/black"
+                            android:contentDescription="Logo"
+                            android:layout_centerVertical="true"
+                            android:scaleType="fitXY"
+                            android:layout_alignParentTop="true" />
+
+                        <ProgressBar
+                            style="?android:attr/progressBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/progressBar2"
+                            android:visibility="gone"
+                            android:layout_centerVertical="true"
+                            android:layout_centerHorizontal="true" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/title"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/icon_layout"
+                        android:layout_toLeftOf="@+id/relativeLayout5"
+                        android:ellipsize="end"
+                        android:singleLine="true" />
+
+                    <RelativeLayout
+                        android:layout_width="?android:attr/actionBarSize"
+                        android:layout_height="?android:attr/actionBarSize"
+                        android:tint="@color/black"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/relativeLayout5">
+
+                    </RelativeLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </android.support.v7.widget.Toolbar>
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_below="@+id/toolbar_info"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:foreground="?android:windowContentOverlay"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+        </FrameLayout>
+
+        <View android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_below="@+id/toolbar_info"
+            android:background="@color/primary"/>
+
+    </RelativeLayout>
+</android.support.v4.widget.DrawerLayout>
