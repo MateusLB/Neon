@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import com.neon.arthurabreu.neon.Activities.ContactsActivity;
+import com.neon.arthurabreu.neon.Activities.GetTransfersActivity;
 import com.neon.arthurabreu.neon.R;
 
 /**
@@ -32,11 +33,11 @@ public class LoginPresenter implements LoginContracts.Presenter, LoginContracts.
 
     @Override
     public void gotToEvents() {
-        //Jump to the next fragment
+        Intent intent = new Intent(context, GetTransfersActivity.class);
+        context.startActivity(intent);
     }
 
     private void goToSendMoney() {
-        //Jump to the next fragment
         Intent intent = new Intent(context, ContactsActivity.class);
         context.startActivity(intent);
     }

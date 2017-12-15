@@ -23,6 +23,9 @@
         <activity android:name=".Activities.ContactsActivity"
             android:screenOrientation="portrait"></activity>
 
+        <activity android:name=".GenericActivity"
+            android:screenOrientation="portrait"></activity>
+
         <activity android:name=".Activities.SendMoneyActivity"
             android:screenOrientation="portrait"></activity>
 
