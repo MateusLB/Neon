@@ -15,17 +15,17 @@ public class LoginContracts {
     }
 
     public interface Presenter{
-        void getContacts();
-        void gotToEvents();
+        void login(String name, String email);
     }
 
     public interface InteractorInput{
-        void fetchContacts(Context context);
+        void login(String name, String email);
     }
 
     public interface InteractorOutput{
         void showLoading();
         void hideLoading();
         void showAlertError(String errorMessage);
+        void apiError(String s);
     }
 }

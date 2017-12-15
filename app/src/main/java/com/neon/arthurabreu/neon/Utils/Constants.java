@@ -8,5 +8,6 @@ public class Constants {
 
     public static final String FRAGMENT = "Fragment";
     public static final String EXTRAS = "Extras";
+    public static final String LOGIN = "Login";
 
 }

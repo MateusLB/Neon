@@ -42,13 +42,23 @@
             android:inputType="none" />
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btnLogin"
+            android:id="@+id/btn_sendMoney"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:background="@drawable/round_button_red"
             android:padding="12dp"
-            android:text="Login" />
+            android:text="Send Money" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_Events"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/round_button_red"
+            android:padding="12dp"
+            android:text="Event History" />
 
     </LinearLayout>
 </ScrollView>

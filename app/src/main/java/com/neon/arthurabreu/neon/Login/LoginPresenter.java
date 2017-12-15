@@ -25,22 +25,27 @@ public class LoginPresenter implements LoginContracts.Presenter, LoginContracts.
         interactorInput = new LoginInteractor(this);
     }
 
-    @Override
-    public void getContacts() {
-        interactorInput.fetchContacts(context);
-        goToSendMoney();
-    }
+//    @Override
+//    public void getContacts() {
+//        interactorInput.fetchContacts(context);
+//        goToSendMoney();
+//    }
 
     @Override
-    public void gotToEvents() {
-        Intent intent = new Intent(context, GetTransfersActivity.class);
-        context.startActivity(intent);
+    public void login(String name, String email) {
+        interactorInput.login(name, email);
     }
 
-    private void goToSendMoney() {
-        Intent intent = new Intent(context, ContactsActivity.class);
-        context.startActivity(intent);
-    }
+//    @Override
+//    public void gotToEvents() {
+//        Intent intent = new Intent(context, GetTransfersActivity.class);
+//        context.startActivity(intent);
+//    }
+//
+//    private void goToSendMoney() {
+//        Intent intent = new Intent(context, ContactsActivity.class);
+//        context.startActivity(intent);
+//    }
 
     @Override
     public void showLoading() {
@@ -55,5 +60,10 @@ public class LoginPresenter implements LoginContracts.Presenter, LoginContracts.
     @Override
     public void showAlertError(String errorMessage) {
         view.showAlertError(errorMessage);
+    }
+
+    @Override
+    public void apiError(String s) {
+        view.showAlertError(s);
     }
 }

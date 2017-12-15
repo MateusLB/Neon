@@ -1,5 +1,10 @@
 package com.neon.arthurabreu.neon.API;
 
+import android.content.Context;
+
+import com.neon.arthurabreu.neon.Utils.Constants;
+import com.neon.arthurabreu.neon.Utils.Preferences;
+
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -11,33 +16,52 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class APIClient {
 
+    private APIService apiService;
+
     public static final String BASE_URL = "http://processoseletivoneon.azurewebsites.net";
-    private static Retrofit retrofit = null;
 
-    public static Retrofit getClient() {
-        if (retrofit==null) {
+    String token = "";
+    Context context;
+    Preferences preferences;
 
-            OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-            httpClient.addInterceptor(new Interceptor() {
-                @Override
-                public Response intercept(Interceptor.Chain chain) throws IOException {
-                    Request original = chain.request();
+    public APIClient(Context context)
+    {
+        this.context = context;
 
-                    Request request = original.newBuilder()
-                            .method(original.method(), original.body())
-                            .build();
+        retrievePreferenceLoginToken();
 
-                    return chain.proceed(request);
-                }
-            });
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request newRequest  = chain.request().newBuilder()
+                        .header("Token", token)
+                        .build();
+                return chain.proceed(newRequest);
+            }
+        }).build();
 
-            OkHttpClient client = httpClient.build();
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(client)
-                    .build();
-        }
-        return retrofit;
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(client)
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        apiService = retrofit.create(APIService.class);
+
+    }
+
+    private String retrievePreferenceLoginToken() {
+
+        String token = "";
+
+        if (preferences != null)
+            token = preferences.getString(Constants.LOGIN);
+
+        return token;
+    }
+
+    public APIService getApiService()
+    {
+        return apiService;
     }
 }
